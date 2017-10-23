@@ -12,9 +12,9 @@ Builds a path string by joining components, adding directory separators where ne
 
 ```Swift
 let path = Path.join([
-	"/var/www",
-	"website",
-	"robots.txt"
+    "/var/www",
+    "website",
+    "robots.txt"
 ])
 
 // path -> /var/www/website/robots.txt
@@ -75,6 +75,54 @@ let ext = Path.split("assets/sfx/drumroll.wav")
 let ext = Path.split("assets/sfx")
 
 // ext -> nil
+```
+
+### Path.format([elements])
+
+Builds a path, given named elements of the path.
+
+```Swift
+let path = Path.format([
+    .dir:  "assets/icons",
+    .base: "settings.png"
+])
+
+// path -> "assets/icons/settings.png"
+```
+
+```Swift
+let path = Path.format([
+    .dir:  "assets/vector",
+    .base: "logo"
+    .ext:  "svg"
+])
+
+// path -> "assets/vector/logo.svg"
+```
+
+### Path.isAbsolute(path) and Path.isRelative(path)
+
+Can be used for checking if a path is absolute or relative.
+
+```Swift
+Path.isAbsolute('/var/logs/test.log') // -> true
+Path.isRelative('cache/images/1.bin') // -> true
+```
+
+### Path.exists(path)
+
+Returns true if the path exists.
+
+```Swift
+Path.isAbsolute('/path/to/existing/file.txt') // -> true
+```
+
+### Path.isDir(path)
+
+Returns true if the path exists and it is a directory.
+
+```Swift
+Path.isAbsolute('/path/to/existing/dir') // -> true
 ```
 
 [golang-filepath]: https://golang.org/pkg/path/filepath/
