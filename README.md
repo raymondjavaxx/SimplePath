@@ -125,6 +125,10 @@ Returns true if the path exists and it is a directory.
 Path.isAbsolute('/path/to/existing/dir') // -> true
 ```
 
+## License
+
+This library is licensed under [the MIT license](LICENSE).
+
 [golang-filepath]: https://golang.org/pkg/path/filepath/
 [php-basename]: http://php.net/manual/en/function.basename.php
 [c-dirname]: https://linux.die.net/man/3/dirname
