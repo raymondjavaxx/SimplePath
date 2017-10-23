@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PathElements {
+public enum PathElements {
     /// A directory. e.g. "/var/home"
     case dir
 
@@ -23,7 +23,7 @@ enum PathElements {
 //  MARK: - Basics
 // -------------------------------------------------------
 
-struct Path {
+public struct Path {
 
     /// Builds a path string by joining components, adding directory
     /// separators where necessary.
@@ -31,7 +31,7 @@ struct Path {
     /// - parameter components:  Path components.
     ///
     /// - returns:  Path built from components.
-    static func join(_ components: [String]) -> String{
+    public static func join(_ components: [String]) -> String{
         return NSString.path(withComponents: components)
     }
 
@@ -40,7 +40,7 @@ struct Path {
     /// - parameter path:  The path to be split into components.
     ///
     /// - returns:  Path components.
-    static func split(_ path: String) -> [String] {
+    public static func split(_ path: String) -> [String] {
         return NSString(string: path).pathComponents
     }
 
@@ -51,7 +51,7 @@ struct Path {
     ///                    ends with this extension, it will be removed.
     ///
     /// - returns:  The last component (base name) of the given path.
-    static func basename(_ path: String, ext: String? = nil) -> String {
+    public static func basename(_ path: String, ext: String? = nil) -> String {
         let base = NSString(string: path).lastPathComponent
 
         guard let `extension` = ext else {
@@ -70,7 +70,7 @@ struct Path {
     /// - parameter path:  A path.
     ///
     /// - returns:  Parent directory.
-    static func dirname(_ path: String) -> String {
+    public static func dirname(_ path: String) -> String {
         return NSString(string: path).deletingLastPathComponent
     }
 
@@ -79,7 +79,7 @@ struct Path {
     /// - parameter path:  A path.
     ///
     /// - returns:  Extension name (without period).
-    static func extname(_ path: String) -> String? {
+    public static func extname(_ path: String) -> String? {
         let ext = NSString(string: path).pathExtension
 
         if ext.isEmpty {
@@ -102,7 +102,7 @@ extension Path {
     /// - parameter elements:  A dictionary of named elements and their values.
     ///
     /// - returns:  A path built from the given elements.
-    static func format(_ elements: [PathElements: String?]) -> String {
+    public static func format(_ elements: [PathElements: String?]) -> String {
         var path = ""
 
         if let dir = elements[.dir] as? String {
@@ -135,7 +135,7 @@ extension Path {
     /// - parameter path:  A path
     ///
     /// - returns:  `true` if the path is absolute.
-    static func isAbsolute(_ path: String) -> Bool {
+    public static func isAbsolute(_ path: String) -> Bool {
         return NSString(string: path).isAbsolutePath
     }
 
@@ -144,7 +144,7 @@ extension Path {
     /// - parameter path:  A path
     ///
     /// - returns:  `true` if the path is relative.
-    static func isRelative(_ path: String) -> Bool {
+    public static func isRelative(_ path: String) -> Bool {
         return isAbsolute(path) == false
     }
 
@@ -161,7 +161,7 @@ extension Path {
     /// - parameter path:  A path
     ///
     /// - returns:  `true` if the path exists, `false` otherwise.
-    static func exists(_ path: String) -> Bool {
+    public static func exists(_ path: String) -> Bool {
         return FileManager.default.fileExists(atPath: path)
     }
 
@@ -170,7 +170,7 @@ extension Path {
     /// - parameter path:  A path
     ///
     /// - returns:  `true` if the path exists and is a directory, `false` otherwise.
-    static func isDir(_ path: String) -> Bool {
+    public static func isDir(_ path: String) -> Bool {
         var dir: ObjCBool = false
 
         let exists = FileManager.default.fileExists(atPath: path, isDirectory: &dir)
