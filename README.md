@@ -1,6 +1,6 @@
 # SimplePath
 
-SimplePath is a library for dealing with file paths in Swift. It borrows heavily from other languages such as [Go][golang-filepath], [PHP][php-basename], [C][c-dirname] and [Perl][perl-basename], and runtimes such as [Node.js][nodejs-path].
+SimplePath is a library for working with file paths in Swift. It borrows heavily from other languages such as [Go][golang-filepath], [PHP][php-basename], [C][c-dirname] and [Perl][perl-basename], and runtimes such as [Node.js][nodejs-path].
 
 This library doesn't try to hide the fact that file paths are strings. Most of its functions are just wrappers around [NSString path utilities][NSString].
 
@@ -105,8 +105,8 @@ let path = Path.format([
 Can be used for checking if a path is absolute or relative.
 
 ```Swift
-Path.isAbsolute('/var/logs/test.log') // -> true
-Path.isRelative('cache/images/1.bin') // -> true
+Path.isAbsolute("/var/logs/test.log") // -> true
+Path.isRelative("cache/images/1.bin") // -> true
 ```
 
 ### Path.exists(path)
@@ -114,7 +114,7 @@ Path.isRelative('cache/images/1.bin') // -> true
 Returns true if the path exists.
 
 ```Swift
-Path.isAbsolute('/path/to/existing/file.txt') // -> true
+Path.isAbsolute("/path/to/existing/file.txt") // -> true
 ```
 
 ### Path.isDir(path)
@@ -122,7 +122,7 @@ Path.isAbsolute('/path/to/existing/file.txt') // -> true
 Returns true if the path exists and it is a directory.
 
 ```Swift
-Path.isAbsolute('/path/to/existing/dir') // -> true
+Path.isAbsolute("/path/to/existing/dir") // -> true
 ```
 
 ## License
