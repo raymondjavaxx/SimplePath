@@ -41,7 +41,7 @@ struct Path {
     ///
     /// - returns:  Path components.
     static func split(_ path: String) -> [String] {
-        return (path as NSString).pathComponents
+        return NSString(string: path).pathComponents
     }
 
     /// Returns the last component of a path.
@@ -52,7 +52,7 @@ struct Path {
     ///
     /// - returns:  The last component (base name) of the given path.
     static func basename(_ path: String, ext: String? = nil) -> String {
-        let base = (path as NSString).lastPathComponent
+        let base = NSString(string: path).lastPathComponent
 
         guard let `extension` = ext else {
             return base
@@ -62,7 +62,7 @@ struct Path {
             return base
         }
 
-        return (base as NSString).deletingPathExtension
+        return NSString(string: base).deletingPathExtension
     }
 
     /// Returns the parent directory of a path.
@@ -71,7 +71,7 @@ struct Path {
     ///
     /// - returns:  Parent directory.
     static func dirname(_ path: String) -> String {
-        return (path as NSString).deletingLastPathComponent
+        return NSString(string: path).deletingLastPathComponent
     }
 
     /// Returns the extension of a path.
@@ -80,7 +80,7 @@ struct Path {
     ///
     /// - returns:  Extension name (without period).
     static func extname(_ path: String) -> String? {
-        let ext = (path as NSString).pathExtension
+        let ext = NSString(string: path).pathExtension
 
         if ext.isEmpty {
             return nil
@@ -114,7 +114,7 @@ extension Path {
         }
 
         if let ext = elements[.ext] as? String {
-            if let pathWithExtension = (path as NSString).appendingPathExtension(ext) {
+            if let pathWithExtension = NSString(string: path).appendingPathExtension(ext) {
                 path = pathWithExtension
             }
         }
@@ -136,7 +136,7 @@ extension Path {
     ///
     /// - returns:  `true` if the path is absolute.
     static func isAbsolute(_ path: String) -> Bool {
-        return (path as NSString).isAbsolutePath
+        return NSString(string: path).isAbsolutePath
     }
 
     /// Returns `true` if the given path is relative.
