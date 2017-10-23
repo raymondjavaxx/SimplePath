@@ -171,11 +171,17 @@ extension Path {
     ///
     /// - returns:  `true` if the path exists and is a directory, `false` otherwise.
     public static func isDir(_ path: String) -> Bool {
-        var dir: ObjCBool = false
+        var dir = ObjCBool(false)
 
-        let exists = FileManager.default.fileExists(atPath: path, isDirectory: &dir)
+        guard FileManager.default.fileExists(atPath: path, isDirectory: &dir) else {
+            return false
+        }
 
-        return exists && dir.boolValue
+#if os(Linux)
+        return dir
+#else
+        return dir.boolValue
+#endif
     }
 
 }
