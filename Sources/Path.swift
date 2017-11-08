@@ -33,8 +33,33 @@ public struct Path {
     /// - parameter components:  Path components.
     ///
     /// - returns:  Path built from components.
-    public static func join(_ components: [String]) -> String{
-        return NSString.path(withComponents: components)
+    public static func join(_ components: [String]) -> String {
+        var cleanComponents = [String]()
+
+        for (index, comp) in components.enumerated() {
+            if index == 0 && comp == "/" {
+                cleanComponents.append("")
+            } else {
+                if comp != "/" && comp.count > 0 {
+                    var start = comp.startIndex
+                    var end   = comp.endIndex
+
+                    if comp.hasPrefix("/") {
+                        start = comp.index(after: start)
+                    }
+
+                    if comp.hasSuffix("/") {
+                        end = comp.index(before: end)
+                    }
+
+                    if comp.distance(from: start, to: end) > 0 {
+                        cleanComponents.append("\(comp[start..<end])")
+                    }
+                }
+            }
+        }
+
+        return cleanComponents.joined(separator: "/")
     }
 
     /// Returns all components of a given path.
@@ -73,11 +98,11 @@ public struct Path {
             return base
         }
 
-        guard extname(base) == `extension` else {
+        guard self.extname(base) == `extension` else {
             return base
         }
 
-        return NSString(string: base).deletingPathExtension
+        return self.deletePathExtension(base)
     }
 
     /// Returns the parent directory of a path.
@@ -118,6 +143,44 @@ public struct Path {
 
 extension Path {
 
+    fileprivate static func deletePathExtension(_ path: String) -> String {
+        if (path.count <= 1) {
+            return path
+        }
+
+        var result = path
+
+        if result.hasSuffix("/") {
+            result = String(result.prefix(upTo: result.endIndex))
+        }
+
+        if let index = self.beginingOfPathExtension(result) {
+            result = String(result.prefix(upTo: index))
+        }
+
+        return result
+    }
+
+    fileprivate static func beginingOfPathExtension(_ path: String) -> String.Index? {
+        var beginingOfLastComponent = path.startIndex
+
+        if let range = path.range(of: "/", options: .backwards) {
+            beginingOfLastComponent = range.lowerBound
+        }
+
+        var currentPosition = path.index(before: path.endIndex)
+
+        while currentPosition > beginingOfLastComponent {
+            if path[currentPosition] == "." {
+                return currentPosition
+            }
+
+            currentPosition = path.index(before: currentPosition)
+        }
+
+        return nil
+    }
+
     fileprivate static func lastPathComponent(_ path: String) -> String {
         guard let range = path.range(of: "/", options: .backwards) else {
             return path;
@@ -152,8 +215,8 @@ extension Path {
         }
 
         if let ext = elements[.ext] as? String {
-            if let pathWithExtension = NSString(string: path).appendingPathExtension(ext) {
-                path = pathWithExtension
+            if !ext.hasPrefix("/") {
+                path.append(".\(ext)")
             }
         }
 

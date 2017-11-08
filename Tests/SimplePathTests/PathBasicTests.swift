@@ -13,7 +13,10 @@ class PathBasicTests: XCTestCase {
 
     func testJoin() {
         let result = Path.join([
-            "/var/www",
+            "/",
+            "var/www",
+            "/",
+            "",
             "website",
             "robots.txt"
         ])
