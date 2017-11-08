@@ -25,6 +25,8 @@ public enum PathElements {
 
 public struct Path {
 
+    let separator = "/"
+
     /// Builds a path string by joining components, adding directory
     /// separators where necessary.
     ///
@@ -41,7 +43,20 @@ public struct Path {
     ///
     /// - returns:  Path components.
     public static func split(_ path: String) -> [String] {
-        return NSString(string: path).pathComponents
+        var result = [String]()
+
+        if (path.hasPrefix("/")) {
+            result.append("/")
+        }
+
+        let components = path.split(separator: "/").map { String($0) }
+        result.append(contentsOf: components)
+
+        if (path.count > 1 && path.hasSuffix("/")) {
+            result.append("/")
+        }
+
+        return result
     }
 
     /// Returns the last component of a path.
@@ -52,7 +67,7 @@ public struct Path {
     ///
     /// - returns:  The last component (base name) of the given path.
     public static func basename(_ path: String, ext: String? = nil) -> String {
-        let base = NSString(string: path).lastPathComponent
+        let base = self.lastPathComponent(path)
 
         guard let `extension` = ext else {
             return base
@@ -71,7 +86,13 @@ public struct Path {
     ///
     /// - returns:  Parent directory.
     public static func dirname(_ path: String) -> String {
-        return NSString(string: path).deletingLastPathComponent
+        guard let range = path.range(of: "/", options: .backwards) else {
+            return "";
+        }
+
+        let dir = String(path.prefix(upTo: range.lowerBound))
+
+        return dir.count == 0 ? "/" : dir
     }
 
     /// Returns the extension of a path.
@@ -80,13 +101,30 @@ public struct Path {
     ///
     /// - returns:  Extension name (without period).
     public static func extname(_ path: String) -> String? {
-        let ext = NSString(string: path).pathExtension
+        let filename = self.lastPathComponent(path)
 
-        if ext.isEmpty {
-            return nil
+        guard let range = filename.range(of: ".", options: .backwards) else {
+            return nil;
         }
 
-        return ext
+        let index = filename.index(after: range.lowerBound)
+
+        let ext = String(filename.suffix(from: index))
+
+        return ext.isEmpty ? nil : ext
+    }
+
+}
+
+extension Path {
+
+    fileprivate static func lastPathComponent(_ path: String) -> String {
+        guard let range = path.range(of: "/", options: .backwards) else {
+            return path;
+        }
+
+        let index = path.index(after: range.lowerBound)
+        return String(path.suffix(from: index))
     }
 
 }
@@ -136,7 +174,7 @@ extension Path {
     ///
     /// - returns:  `true` if the path is absolute.
     public static func isAbsolute(_ path: String) -> Bool {
-        return NSString(string: path).isAbsolutePath
+        return path.hasPrefix("/") || path.hasPrefix("~")
     }
 
     /// Returns `true` if the given path is relative.

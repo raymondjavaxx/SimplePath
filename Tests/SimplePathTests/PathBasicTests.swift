@@ -90,10 +90,11 @@ class PathBasicTests: XCTestCase {
             "relative/path"
         )
 
-        XCTAssertEqual(
-            Path.dirname("/"),
-            "/"
-        )
+        XCTAssertEqual(Path.dirname("/"), "/")
+
+        XCTAssertEqual(Path.dirname("/test"), "/")
+
+        XCTAssertEqual(Path.dirname("test"), "")
     }
 
     // For Linux
