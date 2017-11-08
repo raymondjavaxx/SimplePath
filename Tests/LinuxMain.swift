@@ -1,6 +1,6 @@
 
 import XCTest
-@testable import SimplePath
+@testable import SimplePathTests
 
 XCTMain([
     testCase(PathBasicTests.allTests),
