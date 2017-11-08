@@ -5,6 +5,6 @@ import XCTest
 XCTMain([
     testCase(PathBasicTests.allTests),
     testCase(PathFormatTests.allTests),
-    testCase(PathAbsoluteRelativeTests.allTests)
+    testCase(PathAbsoluteRelativeTests.allTests),
     testCase(PathUtilTests.allTests)
 ])
