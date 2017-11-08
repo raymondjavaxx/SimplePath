@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/raymondjavaxx/SimplePath.svg?branch=master)](https://travis-ci.org/raymondjavaxx/SimplePath)
+
 # SimplePath
 
 SimplePath is a library for working with file paths in Swift. It borrows heavily from other languages such as [Go][golang-filepath], [PHP][php-basename], [C][c-dirname] and [Perl][perl-basename], and runtimes such as [Node.js][nodejs-path].
