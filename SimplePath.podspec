@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SimplePath"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "A Swift library for working with file paths"
   s.homepage     = "https://github.com/raymondjavaxx/SimplePath"
   s.license      = { :type => "MIT", :file => "LICENSE" }
