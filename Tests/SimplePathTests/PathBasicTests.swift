@@ -116,7 +116,7 @@ class PathBasicTests: XCTestCase {
 
     // For Linux
     static var allTests = [
-        ("testJoin", testJoinSimple),
+        ("testJoinSimple", testJoinSimple),
         ("testJoinComplex", testJoinComplex),
         ("testSplit", testSplit),
         ("testBasename", testBasename),
