@@ -42,13 +42,13 @@ let components = Path.split("/storage/images/0001.jpg")
 Returns the last component of a path. Usually a file name.
 
 ```Swift
-let base = Path.split("assets/images/logo.png")
+let base = Path.basename("assets/images/logo.png")
 
 // base -> "logo.png"
 ```
 
 ```Swift
-let base = Path.split("assets/images/logo.png", ext: "png")
+let base = Path.basename("assets/images/logo.png", ext: "png")
 
 // base -> "logo"
 ```
@@ -58,7 +58,7 @@ let base = Path.split("assets/images/logo.png", ext: "png")
 Returns the parent directory of a path.
 
 ```Swift
-let dir = Path.split("/var/data/map.bin")
+let dir = Path.dirname("/var/data/map.bin")
 
 // dir -> "/var/data"
 ```
@@ -68,13 +68,13 @@ let dir = Path.split("/var/data/map.bin")
 Gets the extension of a path.
 
 ```Swift
-let ext = Path.split("assets/sfx/drumroll.wav")
+let ext = Path.extname("assets/sfx/drumroll.wav")
 
 // ext -> "wav"
 ```
 
 ```Swift
-let ext = Path.split("assets/sfx")
+let ext = Path.extname("assets/sfx")
 
 // ext -> nil
 ```
@@ -116,7 +116,7 @@ Path.isRelative("cache/images/1.bin") // -> true
 Returns true if the path exists.
 
 ```Swift
-Path.isAbsolute("/path/to/existing/file.txt") // -> true
+Path.exists("/path/to/existing/file.txt") // -> true
 ```
 
 ### Path.isDir(path)
@@ -124,7 +124,7 @@ Path.isAbsolute("/path/to/existing/file.txt") // -> true
 Returns true if the path exists and it is a directory.
 
 ```Swift
-Path.isAbsolute("/path/to/existing/dir") // -> true
+Path.isDir("/path/to/existing/dir") // -> true
 ```
 
 ## License
