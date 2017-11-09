@@ -2,12 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## v1.0.2
+### Added
+
+* Added `Path.isFile()`.
 
 ## v1.0.1
-
 ### Fixed
 
-* Fixed `join` not producing the expected result when passing an absolute path as first component.
+* Fixed `Path.join()` not producing the expected result when passing an absolute path as first component.
 
 ## v1.0.0
 

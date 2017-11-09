@@ -119,9 +119,17 @@ Returns true if the path exists.
 Path.exists("/path/to/existing/file.txt") // -> true
 ```
 
+### Path.isFile(path)
+
+Returns true if the path exists and is a regular file.
+
+```Swift
+Path.isFile("/path/to/existing/file.txt") // -> true
+```
+
 ### Path.isDir(path)
 
-Returns true if the path exists and it is a directory.
+Returns true if the path exists and is a directory.
 
 ```Swift
 Path.isDir("/path/to/existing/dir") // -> true
