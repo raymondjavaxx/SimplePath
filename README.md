@@ -127,6 +127,13 @@ Returns true if the path exists and it is a directory.
 Path.isDir("/path/to/existing/dir") // -> true
 ```
 
+## Extending
+
+If you think SimplePath is missing important functionalty I suggest you follow these steps:
+
+1. Implement such functionality as an [extension][swift-extensions].
+2. And if you believe that the functionality is highly reusable, feel free to contribute it back to the project by opening a [pull request][pull-request].
+
 ## License
 
 This library is licensed under [the MIT license](LICENSE).
@@ -136,3 +143,5 @@ This library is licensed under [the MIT license](LICENSE).
 [c-dirname]: https://linux.die.net/man/3/dirname
 [perl-basename]: https://perldoc.perl.org/File/Basename.html
 [nodejs-path]: https://nodejs.org/api/path.html
+[swift-extensions]: https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html
+[pull-request]: https://github.com/raymondjavaxx/SimplePath/pulls
