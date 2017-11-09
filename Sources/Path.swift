@@ -25,7 +25,7 @@ public enum PathElements {
 
 public struct Path {
 
-    let separator = "/"
+    public static let separator = "/"
 
     /// Builds a path string by joining components, adding directory
     /// separators where necessary.
@@ -34,32 +34,33 @@ public struct Path {
     ///
     /// - returns:  Path built from components.
     public static func join(_ components: [String]) -> String {
-        var cleanComponents = [String]()
+        var result: String = ""
 
-        for (index, comp) in components.enumerated() {
-            if index == 0 && comp == "/" {
-                cleanComponents.append("")
-            } else {
-                if comp != "/" && comp.count > 0 {
-                    var start = comp.startIndex
-                    var end   = comp.endIndex
+        if let root = components.first {
+            result.append(root)
+        }
 
-                    if comp.hasPrefix("/") {
-                        start = comp.index(after: start)
-                    }
+        let firstIndex = components.index(after: components.startIndex)
 
-                    if comp.hasSuffix("/") {
-                        end = comp.index(before: end)
-                    }
+        let range = firstIndex..<components.endIndex
 
-                    if comp.distance(from: start, to: end) > 0 {
-                        cleanComponents.append("\(comp[start..<end])")
-                    }
+        for comp in components[range] {
+            var componentStart = comp.startIndex
+
+            if result.count > 0 && comp.hasPrefix("/") {
+                componentStart = comp.index(after: componentStart)
+            }
+
+            if comp.distance(from: componentStart, to: comp.endIndex) > 0 {
+                if result.count > 0 && !result.hasSuffix("/") {
+                    result.append("/")
                 }
+
+                result.append(comp[componentStart..<comp.endIndex])
             }
         }
 
-        return cleanComponents.joined(separator: "/")
+        return result
     }
 
     /// Returns all components of a given path.

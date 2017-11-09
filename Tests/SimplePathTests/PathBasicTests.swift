@@ -11,14 +11,28 @@ import XCTest
 
 class PathBasicTests: XCTestCase {
 
-    func testJoin() {
+    func testJoinSimple() {
         let result = Path.join([
+            "/var/www",
+            "website",
+            "robots.txt"
+        ])
+
+        let expected = "/var/www/website/robots.txt"
+
+        XCTAssertEqual(result, expected)
+    }
+
+    func testJoinComplex() {
+        let result = Path.join([
+            "",
             "/",
             "var/www",
             "/",
             "",
             "website",
-            "robots.txt"
+            "robots.txt",
+            ""
         ])
 
         let expected = "/var/www/website/robots.txt"
@@ -102,7 +116,8 @@ class PathBasicTests: XCTestCase {
 
     // For Linux
     static var allTests = [
-        ("testJoin", testJoin),
+        ("testJoin", testJoinSimple),
+        ("testJoinComplex", testJoinComplex),
         ("testSplit", testSplit),
         ("testBasename", testBasename),
         ("testExtname", testExtname),
