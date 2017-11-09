@@ -56,7 +56,7 @@ public struct Path {
                     result.append("/")
                 }
 
-                result.append(comp[componentStart..<comp.endIndex])
+                result.append(String(comp[componentStart..<comp.endIndex]))
             }
         }
 
