@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/raymondjavaxx/SimplePath.svg?branch=master)](https://travis-ci.org/raymondjavaxx/SimplePath)
+[![Build](https://github.com/raymondjavaxx/SimplePath/workflows/Build/badge.svg)](https://github.com/raymondjavaxx/SimplePath/actions)
 
 # SimplePath
 
