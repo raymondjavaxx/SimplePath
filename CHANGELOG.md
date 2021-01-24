@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Updated
 
 * Require Swift 5.1 and up.
+* Require iOS 11 or newer.
 
 ## v1.0.2
 ### Added
