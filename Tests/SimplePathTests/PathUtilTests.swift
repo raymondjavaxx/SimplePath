@@ -12,26 +12,26 @@ import XCTest
 class PathUtilTests: XCTestCase {
 
     func testExists() {
-        let wd = FileManager.default.currentDirectoryPath
+        let workingDirectory = FileManager.default.currentDirectoryPath
 
-        XCTAssertTrue(Path.exists(wd))
-        XCTAssertFalse(Path.exists(wd + "/nothing"))
+        XCTAssertTrue(Path.exists(workingDirectory))
+        XCTAssertFalse(Path.exists(workingDirectory + "/nothing"))
     }
 
     func testIsFile() {
-        let wd = FileManager.default.currentDirectoryPath
+        let workingDirectory = FileManager.default.currentDirectoryPath
 
-        XCTAssertFalse(Path.isFile(wd))
-        XCTAssertFalse(Path.isFile(wd + "/nothing.txt"))
-        XCTAssertTrue(Path.isFile(wd + "/Package.swift"))
+        XCTAssertFalse(Path.isFile(workingDirectory))
+        XCTAssertFalse(Path.isFile(workingDirectory + "/nothing.txt"))
+        XCTAssertTrue(Path.isFile(workingDirectory + "/Package.swift"))
     }
 
     func testIsDir() {
-        let wd = FileManager.default.currentDirectoryPath
+        let workingDirectory = FileManager.default.currentDirectoryPath
 
-        XCTAssertTrue(Path.isDir(wd))
-        XCTAssertFalse(Path.isDir(wd + "/nothing"))
-        XCTAssertFalse(Path.isDir(wd + "/Package.swift"))
+        XCTAssertTrue(Path.isDir(workingDirectory))
+        XCTAssertFalse(Path.isDir(workingDirectory + "/nothing"))
+        XCTAssertFalse(Path.isDir(workingDirectory + "/Package.swift"))
     }
 
     // For Linux

@@ -26,7 +26,7 @@
 import Foundation
 
 // -------------------------------------------------------
-//  MARK: - Basics
+// MARK: - Basics
 // -------------------------------------------------------
 
 public struct Path {
@@ -77,14 +77,14 @@ public struct Path {
     public static func split(_ path: String) -> [String] {
         var result = [String]()
 
-        if (path.hasPrefix("/")) {
+        if path.hasPrefix("/") {
             result.append("/")
         }
 
         let components = path.split(separator: "/").map { String($0) }
         result.append(contentsOf: components)
 
-        if (path.count > 1 && path.hasSuffix("/")) {
+        if path.count > 1 && path.hasSuffix("/") {
             result.append("/")
         }
 
@@ -119,7 +119,7 @@ public struct Path {
     /// - returns:  Parent directory.
     public static func dirname(_ path: String) -> String {
         guard let range = path.range(of: "/", options: .backwards) else {
-            return "";
+            return ""
         }
 
         let dir = String(path.prefix(upTo: range.lowerBound))
@@ -136,7 +136,7 @@ public struct Path {
         let filename = self.lastPathComponent(path)
 
         guard let range = filename.range(of: ".", options: .backwards) else {
-            return nil;
+            return nil
         }
 
         let index = filename.index(after: range.lowerBound)
@@ -149,13 +149,13 @@ public struct Path {
 }
 
 // -------------------------------------------------------
-//  MARK: - Internal utils
+// MARK: - Internal utils
 // -------------------------------------------------------
 
 extension Path {
 
     fileprivate static func deletePathExtension(_ path: String) -> String {
-        if (path.count <= 1) {
+        if path.count <= 1 {
             return path
         }
 
@@ -194,7 +194,7 @@ extension Path {
 
     fileprivate static func lastPathComponent(_ path: String) -> String {
         guard let range = path.range(of: "/", options: .backwards) else {
-            return path;
+            return path
         }
 
         let index = path.index(after: range.lowerBound)
@@ -204,7 +204,7 @@ extension Path {
 }
 
 // -------------------------------------------------------
-//  MARK: - Absolute + Relative
+// MARK: - Absolute + Relative
 // -------------------------------------------------------
 
 extension Path {
