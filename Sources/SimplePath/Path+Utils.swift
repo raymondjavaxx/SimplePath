@@ -52,11 +52,7 @@ extension Path {
             return false
         }
 
-#if os(Linux)
-        return !dir
-#else
         return !dir.boolValue
-#endif
     }
 
     /// Checks whether a path is a directory.
@@ -71,11 +67,7 @@ extension Path {
             return false
         }
 
-#if os(Linux)
-        return dir
-#else
         return dir.boolValue
-#endif
     }
 
 }
